@@ -16,7 +16,7 @@ namespace ParsingStrings
             {
                 return bool.TryParse(str, out result);
             }
-            catch (Exception)
+            catch (OverflowException)
             {
                 result = false;
                 return false;
@@ -38,7 +38,7 @@ namespace ParsingStrings
             {
                 throw new ArgumentNullException(nameof(str));
             }
-            catch (Exception)
+            catch (FormatException)
             {
                 return false;
             }

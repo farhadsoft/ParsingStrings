@@ -127,7 +127,7 @@ namespace ParsingStrings
             {
                 return byte.MaxValue;
             }
-            catch (Exception)
+            catch (OverflowException)
             {
                 return byte.MinValue;
             }
@@ -150,7 +150,7 @@ namespace ParsingStrings
                 result = default;
                 return false;
             }
-            catch (Exception)
+            catch (OverflowException)
             {
                 result = default;
                 return false;
@@ -168,13 +168,13 @@ namespace ParsingStrings
             {
                 return sbyte.Parse(str);
             }
-            catch (OverflowException)
-            {
-                throw new OverflowException();
-            }
             catch (FormatException)
             {
                 return sbyte.MaxValue;
+            }
+            catch (OverflowException)
+            {
+                throw new OverflowException();
             }
         }
 
@@ -195,7 +195,7 @@ namespace ParsingStrings
                 result = default;
                 return false;
             }
-            catch (Exception)
+            catch (OverflowException)
             {
                 result = default;
                 return false;
@@ -213,13 +213,13 @@ namespace ParsingStrings
             {
                 return short.Parse(str);
             }
-            catch (OverflowException)
-            {
-                return short.MaxValue;
-            }
             catch (FormatException)
             {
                 throw new FormatException();
+            }
+            catch (OverflowException)
+            {
+                return short.MaxValue;
             }
         }
 
@@ -240,7 +240,7 @@ namespace ParsingStrings
                 result = default;
                 return false;
             }
-            catch (Exception)
+            catch (OverflowException)
             {
                 result = default;
                 return false;
@@ -258,13 +258,13 @@ namespace ParsingStrings
             {
                 return ushort.Parse(str);
             }
-            catch (OverflowException)
-            {
-                return ushort.MaxValue;
-            }
             catch (FormatException)
             {
                 return default;
+            }
+            catch (OverflowException)
+            {
+                return ushort.MaxValue;
             }
         }
 
@@ -285,7 +285,7 @@ namespace ParsingStrings
                 result = default;
                 return false;
             }
-            catch (Exception)
+            catch (OverflowException)
             {
                 result = default;
                 return false;
@@ -303,13 +303,13 @@ namespace ParsingStrings
             {
                 return long.Parse(str);
             }
-            catch (OverflowException)
-            {
-                return -1;
-            }
             catch (FormatException)
             {
                 return long.MinValue;
+            }
+            catch (OverflowException)
+            {
+                return -1;
             }
         }
 
@@ -330,7 +330,7 @@ namespace ParsingStrings
                 result = default;
                 return false;
             }
-            catch (Exception)
+            catch (OverflowException)
             {
                 result = default;
                 return false;
@@ -348,13 +348,13 @@ namespace ParsingStrings
             {
                 return ulong.Parse(str);
             }
-            catch (OverflowException)
-            {
-                throw new OverflowException();
-            }
             catch (FormatException)
             {
                 throw new FormatException();
+            }
+            catch (OverflowException)
+            {
+                throw new OverflowException();
             }
         }
     }

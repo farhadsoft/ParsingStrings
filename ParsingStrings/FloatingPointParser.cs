@@ -16,7 +16,7 @@ namespace ParsingStrings
             {
                 return float.TryParse(str, out result);
             }
-            catch (Exception)
+            catch (OverflowException)
             {
                 result = default;
                 return false;
@@ -38,7 +38,7 @@ namespace ParsingStrings
             {
                 return float.NaN;
             }
-            catch (ArgumentNullException)
+            catch (OverflowException)
             {
                 throw new ArgumentNullException(nameof(str));
             }
@@ -56,7 +56,7 @@ namespace ParsingStrings
             {
                 return double.TryParse(str, out result);
             }
-            catch (Exception)
+            catch (OverflowException)
             {
                 result = default;
                 return false;
@@ -78,7 +78,7 @@ namespace ParsingStrings
             {
                 return double.Epsilon;
             }
-            catch (ArgumentNullException)
+            catch (OverflowException)
             {
                 throw new ArgumentNullException(nameof(str));
             }
@@ -96,7 +96,7 @@ namespace ParsingStrings
             {
                 return decimal.TryParse(str, out result);
             }
-            catch (Exception)
+            catch (OverflowException)
             {
                 result = default;
                 return false;
@@ -118,13 +118,13 @@ namespace ParsingStrings
             {
                 throw new ArgumentNullException(nameof(str));
             }
+            catch (FormatException)
+            {
+                return -1.1m;
+            }
             catch (OverflowException)
             {
                 return -2.2m;
-            }
-            catch (Exception)
-            {
-                return -1.1m;
             }
         }
     }
