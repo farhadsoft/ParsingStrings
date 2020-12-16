@@ -44,8 +44,21 @@ namespace ParsingStrings
         /// <returns>true if <see cref="str"/> was converted successfully; otherwise, false.</returns>
         public static bool TryParseUnsignedInteger(string str, out uint result)
         {
-            // TODO #1. Implement the method using "uint.TryParse" method.
-            throw new NotImplementedException();
+            try
+            {
+                result = uint.Parse(str);
+                return true;
+            }
+            catch (FormatException)
+            {
+                result = default;
+                return false;
+            }
+            catch (OverflowException)
+            {
+                result = default;
+                return false;
+            }
         }
 
         /// <summary>
@@ -55,8 +68,18 @@ namespace ParsingStrings
         /// <returns>A 32-bit unsigned integer equivalent to the number contained in <see cref="str"/>. If a formatting error occurs returns minimum value of unsigned int. If an overflow error occurs returns maximum value of unsigned int.</returns>
         public static uint ParseUnsignedInteger(string str)
         {
-            // TODO #2. Implement the method using "uint.Parse" method, and add exception handling.
-            throw new NotImplementedException();
+            try
+            {
+                return uint.Parse(str);
+            }
+            catch (FormatException)
+            {
+                return default;
+            }
+            catch (OverflowException)
+            {
+                return uint.MaxValue;
+            }
         }
 
         /// <summary>
@@ -67,8 +90,21 @@ namespace ParsingStrings
         /// <returns>true if <see cref="str"/> was converted successfully; otherwise, false.</returns>
         public static bool TryParseByte(string str, out byte result)
         {
-            // TODO #3. Implement the method using "byte.TryParse" method.
-            throw new NotImplementedException();
+            try
+            {
+                result = byte.Parse(str);
+                return true;
+            }
+            catch (FormatException)
+            {
+                result = default;
+                return false;
+            }
+            catch (OverflowException)
+            {
+                result = default;
+                return false;
+            }
         }
 
         /// <summary>
@@ -78,8 +114,23 @@ namespace ParsingStrings
         /// <returns>A byte value that is equivalent to the number contained in <see cref="str"/>. If a formatting error occurs returns maximum value of byte. If an overflow error occurs returns minimum value of byte.</returns>
         public static byte ParseByte(string str)
         {
-            // TODO #4. Implement the method using "byte.Parse" method, and add exception handling.
-            throw new NotImplementedException();
+            if (str is null)
+            {
+                throw new ArgumentNullException(nameof(str));
+            }
+
+            try
+            {
+                return byte.Parse(str);
+            }
+            catch (FormatException)
+            {
+                return byte.MaxValue;
+            }
+            catch (Exception)
+            {
+                return byte.MinValue;
+            }
         }
 
         /// <summary>
@@ -90,8 +141,20 @@ namespace ParsingStrings
         /// <returns>true if <see cref="str"/> was converted successfully; otherwise, false.</returns>
         public static bool TrySignedByte(string str, out sbyte result)
         {
-            // TODO #5. Implement the method using "sbyte.TryParse" method.
-            throw new NotImplementedException();
+            try
+            {
+                return sbyte.TryParse(str, out result);
+            }
+            catch (FormatException)
+            {
+                result = default;
+                return false;
+            }
+            catch (Exception)
+            {
+                result = default;
+                return false;
+            }
         }
 
         /// <summary>
@@ -101,8 +164,18 @@ namespace ParsingStrings
         /// <returns>An 8-bit signed integer that is equivalent to the number contained in the <see cref="str"/> parameter. If a formatting error occurs returns maximum value of signed byte.</returns>
         public static sbyte ParseSignedByte(string str)
         {
-            // TODO #6. Implement the method using "sbyte.Parse" method, and add exception handling.
-            throw new NotImplementedException();
+            try
+            {
+                return sbyte.Parse(str);
+            }
+            catch (OverflowException)
+            {
+                throw new OverflowException();
+            }
+            catch (FormatException)
+            {
+                return sbyte.MaxValue;
+            }
         }
 
         /// <summary>
@@ -113,8 +186,20 @@ namespace ParsingStrings
         /// <returns>true if <see cref="str"/> was converted successfully; otherwise, false.</returns>
         public static bool TryParseShort(string str, out short result)
         {
-            // TODO #7. Implement the method using "short.TryParse" method.
-            throw new NotImplementedException();
+            try
+            {
+                return short.TryParse(str, out result);
+            }
+            catch (FormatException)
+            {
+                result = default;
+                return false;
+            }
+            catch (Exception)
+            {
+                result = default;
+                return false;
+            }
         }
 
         /// <summary>
@@ -124,8 +209,18 @@ namespace ParsingStrings
         /// <returns>A 16-bit signed integer equivalent to the number contained in <see cref="str"/>. If an overflow error occurs returns maximum value of unsigned int.</returns>
         public static short ParseShort(string str)
         {
-            // TODO #8. Implement the method using "short.Parse" method, and add exception handling.
-            throw new NotImplementedException();
+            try
+            {
+                return short.Parse(str);
+            }
+            catch (OverflowException)
+            {
+                return short.MaxValue;
+            }
+            catch (FormatException)
+            {
+                throw new FormatException();
+            }
         }
 
         /// <summary>
@@ -136,8 +231,20 @@ namespace ParsingStrings
         /// <returns>true if <see cref="str"/> was converted successfully; otherwise, false.</returns>
         public static bool TryParseUnsignedShort(string str, out ushort result)
         {
-            // TODO #9. Implement the method using "ushort.TryParse" method.
-            throw new NotImplementedException();
+            try
+            {
+                return ushort.TryParse(str, out result);
+            }
+            catch (FormatException)
+            {
+                result = default;
+                return false;
+            }
+            catch (Exception)
+            {
+                result = default;
+                return false;
+            }
         }
 
         /// <summary>
@@ -147,8 +254,18 @@ namespace ParsingStrings
         /// <returns>A 16-bit unsigned integer equivalent to the number contained in <see cref="str"/>. If a formatting error occurs returns zero. If an overflow error occurs returns maximum value of unsigned short.</returns>
         public static ushort ParseUnsignedShort(string str)
         {
-            // TODO #10. Implement the method using "ushort.Parse" method, and add exception handling.
-            throw new NotImplementedException();
+            try
+            {
+                return ushort.Parse(str);
+            }
+            catch (OverflowException)
+            {
+                return ushort.MaxValue;
+            }
+            catch (FormatException)
+            {
+                return default;
+            }
         }
 
         /// <summary>
@@ -159,8 +276,20 @@ namespace ParsingStrings
         /// <returns>true if <see cref="str"/> was converted successfully; otherwise, false.</returns>
         public static bool TryParseLong(string str, out long result)
         {
-            // TODO #11. Implement the method using "long.TryParse" method.
-            throw new NotImplementedException();
+            try
+            {
+                return long.TryParse(str, out result);
+            }
+            catch (FormatException)
+            {
+                result = default;
+                return false;
+            }
+            catch (Exception)
+            {
+                result = default;
+                return false;
+            }
         }
 
         /// <summary>
@@ -170,8 +299,18 @@ namespace ParsingStrings
         /// <returns>A 64-bit signed integer equivalent to the number contained in <see cref="str"/>. If a formatting error occurs returns minimum value of long. If an overflow error occurs returns minus one.</returns>
         public static long ParseLong(string str)
         {
-            // TODO #12. Implement the method using "long.Parse" method, and add exception handling.
-            throw new NotImplementedException();
+            try
+            {
+                return long.Parse(str);
+            }
+            catch (OverflowException)
+            {
+                return -1;
+            }
+            catch (FormatException)
+            {
+                return long.MinValue;
+            }
         }
 
         /// <summary>
@@ -182,8 +321,20 @@ namespace ParsingStrings
         /// <returns>true if <see cref="str"/> was converted successfully; otherwise, false.</returns>
         public static bool TryParseUnsignedLong(string str, out ulong result)
         {
-            // TODO #13. Implement the method using "ulong.TryParse" method.
-            throw new NotImplementedException();
+            try
+            {
+                return ulong.TryParse(str, out result);
+            }
+            catch (FormatException)
+            {
+                result = default;
+                return false;
+            }
+            catch (Exception)
+            {
+                result = default;
+                return false;
+            }
         }
 
         /// <summary>
@@ -193,8 +344,18 @@ namespace ParsingStrings
         /// <returns>A 64-bit unsigned integer equivalent to the number contained in <see cref="str"/>.</returns>
         public static ulong ParseUnsignedLong(string str)
         {
-            // TODO #14. Implement the method using "ulong.Parse" method, and add exception handling.
-            throw new NotImplementedException();
+            try
+            {
+                return ulong.Parse(str);
+            }
+            catch (OverflowException)
+            {
+                throw new OverflowException();
+            }
+            catch (FormatException)
+            {
+                throw new FormatException();
+            }
         }
     }
 }
